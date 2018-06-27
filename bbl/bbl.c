@@ -7,6 +7,8 @@
 #include "bits.h"
 #include "config.h"
 #include "mfdt.h"
+#include "libfdt.h"
+#include "fdt.h"
 #include <string.h>
 
 extern char _payload_start, _payload_end; /* internal payload */
@@ -29,10 +31,19 @@ static uintptr_t dtb_output()
 
 static void filter_dtb(uintptr_t source)
 {
+  int err;
   uintptr_t dest = dtb_output();
   uint32_t size = fdt_size(source);
   memcpy((void*)dest, (void*)source, size);
 
+  // Allocate space for additional nodes i.e. timer, cpu-map
+  err = fdt_open_into((void *)dest, (void *)dest, size + 1024);
+
+  if (err < 0)
+    die("%s: fdt buffer couldn't be expanded err = [%d]!!\n", __func__, err);
+
+  //Add extra nodes i.e. timer, cpu-map
+  add_timer_node((void *)dest);
   // Remove information from the chained FDT
   filter_harts(dest, &disabled_hart_mask);
   filter_plic(dest);
