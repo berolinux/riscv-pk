@@ -4,7 +4,7 @@
 #include "atomic.h"
 #include "vm.h"
 #include "fp_emulation.h"
-#include "fdt.h"
+#include "mfdt.h"
 #include "uart.h"
 #include "uart16550.h"
 #include "finisher.h"
@@ -157,7 +157,6 @@ void init_first_hart(uintptr_t hartid, uintptr_t dtb)
   query_uart16550(dtb);
   query_htif(dtb);
   printm("bbl loader\r\n");
-
   hart_init();
   hls_init(0); // this might get called again from parse_config_string
 

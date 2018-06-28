@@ -3,7 +3,7 @@
 #include "htif.h"
 #include "atomic.h"
 #include "mtrap.h"
-#include "fdt.h"
+#include "mfdt.h"
 #include "syscall.h"
 #include <string.h>
 

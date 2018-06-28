@@ -2,7 +2,7 @@
 
 #include <string.h>
 #include "finisher.h"
-#include "fdt.h"
+#include "mfdt.h"
 
 volatile uint32_t* finisher;
 

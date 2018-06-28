@@ -6,7 +6,7 @@
 #include "vm.h"
 #include "bits.h"
 #include "config.h"
-#include "fdt.h"
+#include "mfdt.h"
 #include <string.h>
 
 extern char _payload_start, _payload_end; /* internal payload */
