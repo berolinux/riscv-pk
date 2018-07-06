@@ -37,13 +37,14 @@ static void filter_dtb(uintptr_t source)
   memcpy((void*)dest, (void*)source, size);
 
   // Allocate space for additional nodes i.e. timer, cpu-map
-  err = fdt_open_into((void *)dest, (void *)dest, size + 1024);
+  err = fdt_open_into((void *)dest, (void *)dest, size + 2048);
 
   if (err < 0)
     die("%s: fdt buffer couldn't be expanded err = [%d]!!\n", __func__, err);
 
   //Add extra nodes i.e. timer, cpu-map
   add_timer_node((void *)dest);
+  add_msemi_pcie_node((void *)dest);
   // Remove information from the chained FDT
   filter_harts(dest, &disabled_hart_mask);
   filter_plic(dest);
