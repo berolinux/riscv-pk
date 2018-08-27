@@ -10,6 +10,9 @@
 #undef DUMMY_PAYLOAD_ENABLED
 
 /* Define if subproject MCPPBS_SPROJ_NORM is enabled */
+#undef LIBFDT_ENABLED
+
+/* Define if subproject MCPPBS_SPROJ_NORM is enabled */
 #undef MACHINE_ENABLED
 
 /* Define to the address where bug reports for this package should be sent. */
